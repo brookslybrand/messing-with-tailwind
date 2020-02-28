@@ -1,42 +1,61 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import ExpansionPanel from '@material-ui/core/ExpansionPanel'
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
-import Typography from '@material-ui/core/Typography'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import React, { useState } from 'react'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    padding: '1rem'
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
-  }
-}))
+import { MdExpandMore as ExpandMoreIcon } from 'react-icons/md'
+
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel
+} from '@reach/accordion'
+import '@reach/accordion/styles.css'
 
 export default function SimpleExpansionPanel() {
-  const classes = useStyles()
+  const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+    <div className="w-full p-4">
+      {/* displaly: hidden is messing up the transition */}
+      {/* <div
+        className={`w-full bg-blue-600 ${
+          expanded ? 'block h-16' : 'hidden h-4'
+        } transition-height duration-1000 ease-in`}
+      /> */}
+
+      <Accordion
+        className="border-0 rounded-t shadow-md"
+        index={expanded ? 0 : null}
+        onChange={e => setExpanded(prev => !prev)}
+      >
+        <AccordionItem>
+          <AccordionButton className="flex w-full items-center justify-between px-6 focus:bg-gray-300 focus:outline-none">
+            <p className="my-3 text-lg">Expansion Panel 1</p>
+
+            <div aria-disabled="false" aria-hidden="true">
+              {/* <IconButton> */}
+              <ExpandMoreIcon
+                // className="transition-transform ease-in-out"
+                className={`w-6 h-6 fill-current text-gray-600 transition duration-150 ease-in-out transform ${
+                  expanded ? 'rotate-180' : 'rotate-0'
+                }`}
+              />
+              {/* </IconButton> */}
+            </div>
+          </AccordionButton>
+          <hr />
+          <AccordionPanel
+            className={`p-6 min-h-0 transition-height duration-1000 ease-in ${
+              expanded ? 'h-16' : 'h-0'
+            }`}
+          >
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+              eget.
+            </p>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
     </div>
   )
 }

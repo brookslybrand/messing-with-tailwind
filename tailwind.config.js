@@ -7,7 +7,11 @@ module.exports = {
       display: ['Oswald'],
       body: ['Poppins', '-apple-system', 'BlinkMacSystemFont']
     },
-    extend: {}
+    extend: {
+      transitionProperty: {
+        height: 'height'
+      }
+    }
   },
   variants: {},
   plugins: []
