@@ -101,10 +101,6 @@ code {
  * Remove the border on images inside links in IE 10.
  */
 
-img {
-  border-style: none;
-}
-
 /* Forms
    ========================================================================== */
 
@@ -213,8 +209,7 @@ template {
  * Removes the default spacing and border for appropriate elements.
  */
 
-h1,
-p {
+h1 {
   margin: 0;
 }
 
@@ -288,10 +283,6 @@ html {
  * https://github.com/tailwindcss/tailwindcss/issues/362
  */
 
-img {
-  border-style: solid;
-}
-
 h1 {
   font-size: inherit;
   font-weight: inherit;
@@ -334,11 +325,6 @@ code {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
-img {
-  display: block;
-  vertical-align: middle;
-}
-
 /**
  * Constrain images and videos to the parent width and preserve
  * their instrinsic aspect ratio.
@@ -346,93 +332,24 @@ img {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-.block {
-  display: block;
-}
-
 .font-body {
-  font-family: Poppins;
+  font-family: Poppins, -apple-system, BlinkMacSystemFont;
 }
 
 .font-medium {
   font-weight: 500;
 }
 
-.font-semibold {
-  font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.leading-tight {
-  line-height: 1.25;
-}
-
 .m-4 {
   margin: 1rem;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.shadow {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-
-.text-gray-600 {
-  color: #718096;
 }
 
 .text-gray-900 {
   color: #1a202c;
 }
 
-.text-indigo-600 {
-  color: #5a67d8;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-}
-
 .text-3xl {
   font-size: 1.875rem;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.hover\:underline:hover {
-  text-decoration: underline;
 }
 
 .antialiased {
@@ -440,31 +357,4 @@ img {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.tracking-wide {
-  letter-spacing: 0.025em;
-}
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap');
-
-@media (min-width: 768px) {
-  .md\:flex {
-    display: -webkit-box;
-    display: flex;
-  }
-
-  .md\:flex-shrink-0 {
-    flex-shrink: 0;
-  }
-
-  .md\:mt-0 {
-    margin-top: 0;
-  }
-
-  .md\:ml-6 {
-    margin-left: 1.5rem;
-  }
-
-  .md\:w-56 {
-    width: 14rem;
-  }
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
