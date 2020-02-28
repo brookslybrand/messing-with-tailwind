@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+    <div className="md:flex m-4 p-2 shadow rounded-lg">
+      <div className="md:flex-shrink-0">
+        <img
+          className="rounded-lg md:w-56"
+          src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
+          alt="Woman paying for a purchase"
+        />
+      </div>
+      <div className="mt-4 md:mt-0 md:ml-6">
+        <div className="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+          Marketing
+        </div>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#"
+          className="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
         >
-          Learn React
+          Finding customers for your new business
         </a>
-      </header>
+        <p className="mt-2 text-gray-600">
+          Getting a new business off the ground is a lot of hard work. Here are
+          five ideas you can use to find your first customers.
+        </p>
+      </div>
     </div>
   );
 }
