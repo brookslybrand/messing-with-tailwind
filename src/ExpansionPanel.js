@@ -15,13 +15,6 @@ export default function SimpleExpansionPanel() {
 
   return (
     <div className="w-full p-4">
-      {/* displaly: hidden is messing up the transition */}
-      {/* <div
-        className={`w-full bg-blue-600 ${
-          expanded ? 'block h-16' : 'hidden h-4'
-        } transition-height duration-1000 ease-in`}
-      /> */}
-
       <Accordion
         className="border-0 rounded-t shadow-md"
         index={expanded ? 0 : null}
@@ -32,27 +25,27 @@ export default function SimpleExpansionPanel() {
             <p className="my-3 text-lg">Expansion Panel 1</p>
 
             <div aria-disabled="false" aria-hidden="true">
-              {/* <IconButton> */}
               <ExpandMoreIcon
                 // className="transition-transform ease-in-out"
                 className={`w-6 h-6 fill-current text-gray-600 transition duration-150 ease-in-out transform ${
                   expanded ? 'rotate-180' : 'rotate-0'
                 }`}
               />
-              {/* </IconButton> */}
             </div>
           </AccordionButton>
           <hr />
           <AccordionPanel
-            className={`p-6 min-h-0 transition-height duration-1000 ease-in ${
-              expanded ? 'h-16' : 'h-0'
+            className={`block min-h-0 overflow-hidden transition-height duration-200 ease-in-out ${
+              expanded ? 'visible h-16' : 'invisible h-0'
             }`}
           >
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </p>
+            <div className="visible p-6">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </p>
+            </div>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

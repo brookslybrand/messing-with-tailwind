@@ -9,7 +9,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        // taken from https://tailwindcss.com/docs/customizing-colors/#overriding-a-default-color
+        // https://tailwindcss.com/docs/customizing-colors/#overriding-a-default-color
         gray: {
           '100': '#f5f5f5',
           '200': '#eeeeee',
@@ -22,8 +22,10 @@ module.exports = {
           '900': '#212121'
         }
       },
+      // https://tailwindcss.com/docs/transition-property/#customizing
       transitionProperty: {
-        height: 'height'
+        height: 'height',
+        spacing: 'margin, padding'
       }
     }
   },

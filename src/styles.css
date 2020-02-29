@@ -10891,6 +10891,10 @@ video {
   transition-property: height;
 }
 
+.transition-spacing {
+  transition-property: margin, padding;
+}
+
 .ease-linear {
   transition-timing-function: linear;
 }
@@ -21223,6 +21227,10 @@ video {
 
   .sm\:transition-height {
     transition-property: height;
+  }
+
+  .sm\:transition-spacing {
+    transition-property: margin, padding;
   }
 
   .sm\:ease-linear {
@@ -31558,6 +31566,10 @@ video {
     transition-property: height;
   }
 
+  .md\:transition-spacing {
+    transition-property: margin, padding;
+  }
+
   .md\:ease-linear {
     transition-timing-function: linear;
   }
@@ -41891,6 +41903,10 @@ video {
     transition-property: height;
   }
 
+  .lg\:transition-spacing {
+    transition-property: margin, padding;
+  }
+
   .lg\:ease-linear {
     transition-timing-function: linear;
   }
@@ -52222,6 +52238,10 @@ video {
 
   .xl\:transition-height {
     transition-property: height;
+  }
+
+  .xl\:transition-spacing {
+    transition-property: margin, padding;
   }
 
   .xl\:ease-linear {
