@@ -3,7 +3,8 @@ import React, {
   useRef,
   useEffect,
   useContext,
-  createContext
+  createContext,
+  Fragment
 } from 'react'
 
 import { MdExpandMore as ExpandMoreIcon } from 'react-icons/md'
@@ -26,12 +27,12 @@ function ExpansionPanel({ children }) {
   return (
     <div className="w-full p-4">
       <Accordion
-        className="border-0 rounded-t shadow-md"
+        className="border-0 rounded-t overflow-hidden shadow-md"
         index={expanded ? 0 : null}
         onChange={e => setExpanded(prev => !prev)}
       >
         <ExpansionContext.Provider value={expanded}>
-          {children}
+          <AccordionItem id="test">{children}</AccordionItem>
         </ExpansionContext.Provider>
       </Accordion>
     </div>
@@ -41,7 +42,7 @@ function ExpansionPanel({ children }) {
 function ExpansionPanelSummary({ children }) {
   const expanded = useExpanded()
   return (
-    <AccordionItem>
+    <Fragment>
       <AccordionButton className="flex w-full items-center justify-between px-6 focus:bg-gray-300 focus:outline-none">
         {children}
 
@@ -54,7 +55,7 @@ function ExpansionPanelSummary({ children }) {
         </div>
       </AccordionButton>
       <hr />
-    </AccordionItem>
+    </Fragment>
   )
 }
 
