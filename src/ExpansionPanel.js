@@ -28,25 +28,27 @@ export {
   ExpansionPanelDetails
 }
 
-function ExpansionPanel({ children }) {
-  const [expandedIndices, setExpandedIndices] = useState([])
+// if accordion is `true`, only one expansion panel will be openable at a time
+function ExpansionPanel({ accordion = true, children }) {
+  const [expandedIndices, setExpandedIndices] = useState(new Set())
 
   const handleChange = changedIdx => {
-    setExpandedIndices(prev => {
-      // remove the changed index if it is already in expandedIndices, otherwise add it
-      const idxOfChangedIdx = prev.indexOf(changedIdx)
-      if (idxOfChangedIdx !== -1) {
-        const copy = [...prev]
-        copy.splice(idxOfChangedIdx, 1)
+    if (accordion) setExpandedIndices(new Set([changedIdx]))
+    else {
+      setExpandedIndices(prev => {
+        const copy = new Set([...prev])
+        // remove the changed index if it is already in expandedIndices, otherwise add it
+        if (copy.has(changedIdx)) copy.delete(changedIdx)
+        else copy.add(changedIdx)
         return copy
-      } else return prev.concat(changedIdx)
-    })
+      })
+    }
   }
 
   return (
     <Accordion
       className="border-0 rounded-t overflow-hidden shadow-md"
-      index={expandedIndices}
+      index={[...expandedIndices]} // must convert to an array
       onChange={handleChange}
     >
       <ExpandedIndicesContext.Provider value={expandedIndices}>
@@ -114,8 +116,8 @@ const useExpanded = () => {
     )
   // need to get whether or not the previous is expanded to add an <hr />
   return {
-    prevExpanded: index > 0 ? expandedIndices.includes(index - 1) : false,
-    expanded: expandedIndices.includes(index)
+    prevExpanded: index > 0 ? expandedIndices.has(index - 1) : false,
+    expanded: expandedIndices.has(index)
   }
 }
 
