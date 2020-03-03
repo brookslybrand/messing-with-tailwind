@@ -25,7 +25,8 @@ module.exports = {
       // https://tailwindcss.com/docs/transition-property/#customizing
       transitionProperty: {
         height: 'height',
-        spacing: 'margin, padding'
+        spacing: 'margin, padding',
+        bg: 'background'
       }
     }
   },

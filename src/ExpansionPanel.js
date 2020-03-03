@@ -17,6 +17,7 @@ import {
   AccordionPanel
 } from '@reach/accordion'
 import '@reach/accordion/styles.css'
+import Ripple from './Ripple'
 
 const ExpandedIndicesContext = createContext()
 const ExpansionContext = createContext()
@@ -74,12 +75,13 @@ function ExpansionPanelSummary({ children }) {
       <AccordionButton className="flex w-full items-center justify-between px-6 focus:bg-gray-300 focus:outline-none">
         {children}
 
-        <div aria-disabled="false" aria-hidden="true">
+        <div className="relative" aria-disabled="false" aria-hidden="true">
           <ExpandMoreIcon
             className={`w-6 h-6 fill-current text-gray-600 transition duration-150 ease-in-out transform ${
               expanded ? 'rotate-180' : 'rotate-0'
             }`}
           />
+          <Ripple color="#616161" duration={400} />
         </div>
       </AccordionButton>
       <hr />

@@ -73,7 +73,7 @@ function App() {
 
 function Switch({ id, checked, onChange }) {
   return (
-    <div className="relative w-10 h-4">
+    <div className="relative w-10 h-4" tabIndex="0">
       <input
         id={id}
         type="checkbox"
