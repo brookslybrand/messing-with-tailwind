@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   ExpansionPanel,
+  ExpansionPanelItem,
   ExpansionPanelSummary,
   ExpansionPanelDetails
 } from './ExpansionPanel'
@@ -13,16 +14,42 @@ function App() {
       </h1>
       <div className="max-w-3xl w-full">
         <ExpansionPanel>
-          <ExpansionPanelSummary>
-            <p className="my-3 text-lg">Expansion Panel 1</p>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
-            </p>
-          </ExpansionPanelDetails>
+          <ExpansionPanelItem>
+            <ExpansionPanelSummary>
+              <p className="my-3 text-lg">Expansion Panel 1</p>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </p>
+            </ExpansionPanelDetails>
+          </ExpansionPanelItem>
+          <ExpansionPanelItem>
+            <ExpansionPanelSummary>
+              <p className="my-3 text-lg">Expansion Panel 2</p>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </p>
+            </ExpansionPanelDetails>
+          </ExpansionPanelItem>
+          <ExpansionPanelItem>
+            <ExpansionPanelSummary>
+              <p className="my-3 text-lg">Expansion Panel 3</p>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
+              </p>
+            </ExpansionPanelDetails>
+          </ExpansionPanelItem>
         </ExpansionPanel>
       </div>
     </main>

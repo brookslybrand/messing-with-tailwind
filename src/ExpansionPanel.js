@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useContext,
   createContext,
+  Children,
   Fragment
 } from 'react'
 
@@ -17,32 +18,57 @@ import {
 } from '@reach/accordion'
 import '@reach/accordion/styles.css'
 
+const ExpandedIndicesContext = createContext()
 const ExpansionContext = createContext()
 
-export { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails }
+export {
+  ExpansionPanel,
+  ExpansionPanelItem,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails
+}
 
 function ExpansionPanel({ children }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expandedIndices, setExpandedIndices] = useState([])
+
+  const handleChange = changedIdx => {
+    setExpandedIndices(prev => {
+      // remove the changed index if it is already in expandedIndices, otherwise add it
+      const idxOfChangedIdx = prev.indexOf(changedIdx)
+      if (idxOfChangedIdx !== -1) {
+        const copy = [...prev]
+        copy.splice(idxOfChangedIdx, 1)
+        return copy
+      } else return prev.concat(changedIdx)
+    })
+  }
 
   return (
-    <div className="w-full p-4">
-      <Accordion
-        className="border-0 rounded-t overflow-hidden shadow-md"
-        index={expanded ? 0 : null}
-        onChange={e => setExpanded(prev => !prev)}
-      >
-        <ExpansionContext.Provider value={expanded}>
-          <AccordionItem id="test">{children}</AccordionItem>
-        </ExpansionContext.Provider>
-      </Accordion>
-    </div>
+    <Accordion
+      className="border-0 rounded-t overflow-hidden shadow-md"
+      index={expandedIndices}
+      onChange={handleChange}
+    >
+      <ExpandedIndicesContext.Provider value={expandedIndices}>
+        {Children.map(children, (child, index) => (
+          <ExpansionContext.Provider value={index}>
+            {child}
+          </ExpansionContext.Provider>
+        ))}
+      </ExpandedIndicesContext.Provider>
+    </Accordion>
   )
 }
 
+function ExpansionPanelItem({ children }) {
+  return <AccordionItem>{children}</AccordionItem>
+}
+
 function ExpansionPanelSummary({ children }) {
-  const expanded = useExpanded()
+  const { prevExpanded, expanded } = useExpanded()
   return (
     <Fragment>
+      {prevExpanded ? <hr /> : null}
       <AccordionButton className="flex w-full items-center justify-between px-6 focus:bg-gray-300 focus:outline-none">
         {children}
 
@@ -61,7 +87,7 @@ function ExpansionPanelSummary({ children }) {
 
 function ExpansionPanelDetails({ children }) {
   const [ref, height] = useHeight()
-  const expanded = useExpanded()
+  const { expanded } = useExpanded()
   return (
     <AccordionPanel
       className={`block min-h-0 overflow-hidden transition-height duration-200 ease-in-out ${
@@ -80,12 +106,17 @@ function ExpansionPanelDetails({ children }) {
 // hooks!
 
 const useExpanded = () => {
-  const expanded = useContext(ExpansionContext)
-  if (expanded === undefined)
+  const expandedIndices = useContext(ExpandedIndicesContext)
+  const index = useContext(ExpansionContext)
+  if (index === undefined)
     throw new Error(
       `useExpanded must be used in a component rendered as a decendent of ExpansionPanel`
     )
-  return expanded
+  // need to get whether or not the previous is expanded to add an <hr />
+  return {
+    prevExpanded: index > 0 ? expandedIndices.includes(index - 1) : false,
+    expanded: expandedIndices.includes(index)
+  }
 }
 
 const useHeight = () => {
