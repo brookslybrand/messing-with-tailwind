@@ -1,5 +1,23 @@
 @tailwind base;
 @tailwind components;
+
+.ripple {
+  @apply absolute;
+  @apply rounded-full;
+  @apply opacity-75;
+  transform: scale(0);
+
+  animation-name: rippleEffect;
+  animation-duration: 850ms;
+}
+
+@keyframes rippleEffect {
+  to {
+    @apply opacity-0;
+    transform: scale(2);
+  }
+}
+
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');

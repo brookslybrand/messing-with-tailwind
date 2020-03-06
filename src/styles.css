@@ -608,6 +608,22 @@ video {
   }
 }
 
+.ripple {
+  position: absolute;
+  border-radius: 9999px;
+  opacity: 0.75;
+  transform: scale(0);
+  animation-name: rippleEffect;
+  animation-duration: 850ms;
+}
+
+@keyframes rippleEffect {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

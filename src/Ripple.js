@@ -1,34 +1,7 @@
 // taken from https://dev.to/rohanfaiyazkhan/recreating-the-material-design-ripple-effect-in-react-54p
 
-import { useState, useLayoutEffect } from 'react'
-/**@jsx jsx */
-import { jsx, css } from '@emotion/core'
+import React, { useState, useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
-
-const rippleContainerCss = (color, duration) => css`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  span {
-    transform: scale(0);
-    border-radius: 100%;
-    position: absolute;
-    opacity: 0.75;
-    background-color: ${color};
-    animation-name: ripple;
-    animation-duration: ${duration}ms;
-  }
-
-  @keyframes ripple {
-    to {
-      opacity: 0;
-      transform: scale(2);
-    }
-  }
-`
 
 const useDebouncedRippleCleanUp = (rippleCount, duration, cleanUpFunction) => {
   useLayoutEffect(() => {
@@ -46,7 +19,7 @@ const useDebouncedRippleCleanUp = (rippleCount, duration, cleanUpFunction) => {
   }, [rippleCount, duration, cleanUpFunction])
 }
 
-const Ripple = ({ duration = 850, color = '#fff' }) => {
+const Ripple = ({ duration = 850, center = true }) => {
   const [rippleArray, setRippleArray] = useState([])
 
   useDebouncedRippleCleanUp(rippleArray.length, duration, () => {
@@ -71,15 +44,16 @@ const Ripple = ({ duration = 850, color = '#fff' }) => {
   }
 
   return (
-    <div css={rippleContainerCss(color, duration)} onMouseDown={addRipple}>
+    <div className="absolute inset-0" onMouseDown={addRipple}>
       {rippleArray.length > 0 &&
         rippleArray.map((ripple, index) => {
           return (
             <span
-              key={'span' + index}
+              key={index}
+              className="bg-gray-700 ripple"
               style={{
-                top: ripple.y,
-                left: ripple.x,
+                top: center ? 0 : ripple.y,
+                left: center ? 0 : ripple.x,
                 width: ripple.size,
                 height: ripple.size
               }}
