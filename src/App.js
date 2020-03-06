@@ -5,6 +5,7 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails
 } from './ExpansionPanel'
+import VisuallyHidden from '@reach/visually-hidden'
 
 function App() {
   const [isAccordion, setIsAccordion] = useState(false)
@@ -72,20 +73,27 @@ function App() {
 }
 
 function Switch({ id, checked, onChange }) {
+  const [isFocus, setIsFocus] = useState(false)
+
+  console.log(isFocus)
+
   return (
-    <div className="relative w-10 h-4" tabIndex="0">
-      <input
-        id={id}
-        type="checkbox"
-        className="hidden"
-        checked={checked}
-        onChange={onChange}
-      />
-      <div className="h-4 bg-gray-400 rounded-full shadow-inner" />
+    <div className="relative w-10 h-4">
+      <VisuallyHidden>
+        <input
+          id={id}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+        />
+      </VisuallyHidden>
+      <div className="h-4 bg-gray-400 rounded-full shadow-inner trnasiti" />
       <div
-        className={`absolute inset-0  w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0 transition duration-150 ease-in-out transform ${
+        className={`absolute inset-0 w-6 h-6 bg-white rounded-full shadow inset-y-0 left-0 transition-transform duration-150 ease-in-out transform ${
           checked ? 'translate-x-full bg-green-600' : 'translate-x-0'
-        }`}
+        } ${isFocus && 'shadow-outline'}`}
         style={{
           top: '-.25rem',
           left: '-.25rem'
