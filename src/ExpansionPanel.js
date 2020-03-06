@@ -81,7 +81,7 @@ function ExpansionPanelSummary({ children }) {
               expanded ? 'rotate-180' : 'rotate-0'
             }`}
           />
-          <Ripple color="#616161" duration={400} />
+          <Ripple />
         </div>
       </AccordionButton>
       <hr />

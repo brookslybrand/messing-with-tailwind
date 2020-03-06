@@ -614,7 +614,6 @@ video {
   opacity: 0.75;
   transform: scale(0);
   animation-name: rippleEffect;
-  animation-duration: 850ms;
 }
 
 @keyframes rippleEffect {
