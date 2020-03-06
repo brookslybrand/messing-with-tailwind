@@ -14,7 +14,6 @@
     ]
   },
   "dependencies": {
-    "@emotion/core": "^10.0.28",
     "@reach/accordion": "^0.8.5",
     "@reach/visually-hidden": "^0.8.2",
     "@testing-library/jest-dom": "^4.2.4",
